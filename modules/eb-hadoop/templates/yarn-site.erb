@@ -5,27 +5,27 @@
   #resourcemanager
   <property>
     <name>yarn.resourcemanager.scheduler.address</name>
-    <value><%=scope.lookupvar("HADOOP_RESOURCEMANAGER_HOST")%>:8030</value>
+    <value><%=scope.lookupvar("eb-hadoop::params::HADOOP_RESOURCEMANAGER_HOST")%>:8030</value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value><%=scope.lookupvar("HADOOP_RESOURCEMANAGER_HOST")%>:8031</value>
+    <value><%=scope.lookupvar("eb-hadoop::params::HADOOP_RESOURCEMANAGER_HOST")%>:8031</value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.address</name>
-    <value><%=scope.lookupvar("HADOOP_RESOURCEMANAGER_HOST")%>:8032</value>
+    <value><%=scope.lookupvar("eb-hadoop::params::HADOOP_RESOURCEMANAGER_HOST")%>:8032</value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.admin.address</name>
-    <value><%=scope.lookupvar("HADOOP_RESOURCEMANAGER_HOST")%>:8033</value>
+    <value><%=scope.lookupvar("eb-hadoop::params::HADOOP_RESOURCEMANAGER_HOST")%>:8033</value>
   </property>
 
   <property>
     <name>yarn.resourcemanager.webapp.address</name>
-    <value><%=scope.lookupvar("HADOOP_RESOURCEMANAGER_HOST")%>:8088</value>
+    <value><%=scope.lookupvar("eb-hadoop::params::HADOOP_RESOURCEMANAGER_HOST")%>:8088</value>
   </property>
 
   #nodemanager
@@ -41,18 +41,18 @@
 
   <property>
     <name>yarn.nodemanager.local-dirs</name>
-    <value><%=scope.lookupvar("YARN_NODEMANAGER_LOCAL_DIRS")%></value>
+    <value><%=scope.lookupvar("eb-hadoop::params::YARN_NODEMANAGER_LOCAL_DIRS")%></value>
   </property>
 
   <property>
     <name>yarn.nodemanager.log-dirs</name>
-    <value><%=scope.lookupvar("YARN_NODEMANAGER_LOG_DIRS")%></value>
+    <value><%=scope.lookupvar("eb-hadoop::params::YARN_NODEMANAGER_LOG_DIRS")%></value>
   </property>
 
   #staging
   <property>
     <name>yarn.app.mapreduce.am.staging-dir</name>
-    <value><%=scope.lookupvar("YARN_STAGING_DIRS")%></value>
+    <value><%=scope.lookupvar("eb-hadoop::params::YARN_STAGING_DIRS")%></value>
   </property>
 
 </configuration>
