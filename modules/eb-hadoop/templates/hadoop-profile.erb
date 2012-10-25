@@ -1,0 +1,21 @@
+#env params
+export HADOOP_PREFIX=<%=scope.lookupvar("eb-hadoop::params::HADOOP_PREFIX") %>
+export PATH=<%=scope.lookupvar("eb-hadoop::params::PATH") %>
+
+#TODO
+export JAVA_HOME=<%=scope.lookupvar("eb-jdk::params::JAVA_HOME") %>
+
+#hadoop home params
+export HADOOP_COMMON_HOME=<%=scope.lookupvar("eb-hadoop::params::HADOOP_COMMON_HOME") %>
+export HADOOP_MAPRED_HOME=<%=scope.lookupvar("eb-hadoop::params::HADOOP_MAPRED_HOME") %>
+export HADOOP_HDFS_HOME=<%=scope.lookupvar("eb-hadoop::params::HADOOP_HDFS_HOME") %>
+export YARN_HOME=<%=scope.lookupvar("eb-hadoop::params::YARN_HOME") %>
+
+#hadoop log params
+export HADOOP_LOG_DIR=<%=scope.lookupvar("eb-hadoop::params::HADOOP_LOG_DIR") %>
+export YARN_LOG_DIR=<%=scope.lookupvar("eb-hadoop::params::YARN_LOG_DIR") %>
+
+#hadoop conf params
+export HADOOP_CONF_DIR=<%=scope.lookupvar("eb-hadoop::params::HADOOP_CONF_DIR") %>
+export YARN_CONF_DIR=<%=scope.lookupvar("eb-hadoop::params::YARN_CONF_DIR") %>
+

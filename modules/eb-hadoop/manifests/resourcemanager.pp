@@ -1,0 +1,2 @@
+class eb-hadoop::resourcemanager {
+}

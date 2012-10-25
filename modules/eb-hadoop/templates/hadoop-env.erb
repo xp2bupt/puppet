@@ -1,0 +1,38 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+#java home
+export JAVA_HOME=<%=scope.lookupvar("eb-jdk::params::JAVA_HOME")%>
+
+#hadoop home dir 
+export HADOOP_PREFIX=<%=scope.lookupvar("eb-hadoop::params::HADOOP_PREFIX")%>
+
+#path
+export PATH=<%= scope.lookupvar("eb-hadoop::params::PATH")%>
+
+#hadoop home
+export HADOOP_COMMON_HOME=<%=scope.lookupvar("eb-hadoop::params::HADOOP_COMMON_HOME")%>
+export HADOOP_MAPRED_HOME=<%=scope.lookupvar("eb-hadoop::params::HADOOP_MAPRED_HOME")%>
+export HADOOP_HDFS_HOME=<%=scope.lookupvar("eb-hadoop::params::HADOOP_HDFS_HOME")%>
+export YARN_HOME=<%=scope.lookupvar("eb-hadoop::params::YARN_HOME")%>
+
+#hadoop log dir
+export HADOOP_LOG_DIR=<%=scope.lookupvar("eb-hadoop::params::HADOOP_LOG_DIR")%>
+export YARN_LOG_DIR=<%=scope.lookupvar("eb-hadoop::params::YARN_LOG_DIR")%>
+
+#hadoop conf dir
+export HADOOP_CONF_DIR=<%=scope.lookupvar("eb-hadoop::params::HADOOP_CONF_DIR")%>
+export YARN_CONF_DIR=<%=scope.lookupvar("eb-hadoop::params::YARN_CONF_DIR")%>
+
