@@ -1,5 +1,6 @@
 #env params
 export HADOOP_PREFIX=<%=scope.lookupvar("eb-hadoop::params::HADOOP_PREFIX") %>
+export HADOOP_HOME=<%=scope.lookupvar("eb-hadoop::params::HADOOP_PREFIX") %>
 export PATH=<%=scope.lookupvar("eb-hadoop::params::PATH") %>
 
 #TODO

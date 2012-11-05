@@ -1,29 +1,39 @@
 # USAGE : defination for operating hadoop . Start or Stop hadoop
-# PARAM - ensure : running or stopp
+# PARAM - service_state : running or stopp
 # PARAM - method : operating hadoop with cmd or service, 2 kinds of methods
 
 define eb-hadoop::service (
-	$ensure = 'running',
+	$service_state = 'run',
 )
 {	
-	anchor{"eb-hadoop::service::begin": }
-	anchor{"eb-hadoop::service::end": }
-
 
 	#TODO add this param to params.pp
-	$hadoop_daemon_sh = "${eb-hadoop::params::HADOOP_PREFIX}/hadoop-daemon.sh"	
+	$hdfs_daemon_sh = "${eb-hadoop::params::HADOOP_PREFIX}/sbin/hadoop-daemon.sh"	
+	$yarn_daemon_sh = "${eb-hadoop::params::HADOOP_PREFIX}/sbin/yarn-daemon.sh"
 	$hadoop_conf_dir = $eb-hadoop::params::HADOOP_CONF_DIR
-
-	if (ensure == 'running') {
+	
+	if ($name == 'datanode' or $name == 'namenode'){
+		$hadoop_daemon_sh = $hdfs_daemon_sh	
+	} elsif ($name == 'nodemanager' or $name == 'resourcemanager'){
+		$hadoop_daemon_sh = $yarn_daemon_sh
+	}
+	
+	
+	if ($service_state == 'run') {
 		$cmd = "${hadoop_daemon_sh} --config ${hadoop_conf_dir} start ${name}" 
-	} elsif (ensure == 'stopped') {
+	} elsif ($service_state == 'stop') {
 		$cmd = "${hadoop_daemon_sh} --config ${hadoop_conf_dir} stop ${name}" 
 	} else {
 	}
 
+	notify {$cmd : }
 	exec {$cmd :
-		command => cmd,
+		command => $cmd,
+		user => 'root',
+		group => 'root',
+		path => ["/usr/bin", "/usr/sbin","/bin/"],
+		provider => shell	
 	}
 
-	Anchor["eb-hadoop::service::begin"] -> Exec["cmd"] -> Anchor["eb-hadoop::service::end"]
+	anchor{"eb-hadoop::service::${name}::begin":} -> Exec[$cmd] -> anchor{"eb-hadoop::service::${name}::end":}
 }

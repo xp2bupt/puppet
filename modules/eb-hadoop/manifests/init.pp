@@ -1,6 +1,13 @@
-class eb-hadoop {
-	
+class eb-hadoop 
+(
+	$service_state = 'run'
+)
+{
+
 	include eb-hadoop::params	
+
+    if ($service_state == 'install'){
+	
 
 	Eb-hadoop::Package<||>{method => 'tar'}
 	
@@ -97,4 +104,66 @@ class eb-hadoop {
 	}
 
 	Eb-hadoop::Package['hadoop'] -> Eb-hadoop::Configfile<||> -> Exec[$ssh_command]  -> Eb-hadoop::Createdir<||>
+
+   } elsif ($service_state == 'config') {
+
+	# *-site.xml	
+	eb-hadoop::configfile{"core-site.xml":
+		ensure => present ,
+		owner  => 'root' ,
+		group  => 'root' ,
+		mode   =>  0777  ,
+		path   => $eb-hadoop::params::HADOOP_CONF_DIR
+	}
+	
+	eb-hadoop::configfile{"hdfs-site.xml":
+		ensure => present ,
+		owner  => 'root' ,
+		group  => 'root' ,
+		mode   => 0777   ,
+		path   => $eb-hadoop::params::HADOOP_CONF_DIR
+	}
+
+	eb-hadoop::configfile{"mapred-site.xml":
+		ensure => present ,
+		owner  => 'root' ,
+		group  => 'root' ,
+		mode   => 0777   ,
+		path   => $eb-hadoop::params::HADOOP_CONF_DIR
+	}
+	
+	eb-hadoop::configfile{"yarn-site.xml":
+		ensure => present ,
+		owner  => 'root' ,
+		group  => 'root' ,
+		mode   => 0777   ,
+		path   => $eb-hadoop::params::HADOOP_CONF_DIR
+	}
+
+	# *-env.sh
+	eb-hadoop::configfile{"yarn-env.sh":
+		ensure => present ,
+		owner  => 'root' ,
+		group  => 'root' ,
+		mode   => 0777   ,
+		path   => $eb-hadoop::params::HADOOP_CONF_DIR
+	}
+	
+	eb-hadoop::configfile{"hadoop-env.sh":
+		ensure => present ,
+		owner  => 'root' ,
+		group  => 'root' ,
+		mode   => 0777   ,
+		path   => $eb-hadoop::params::HADOOP_CONF_DIR
+	}
+
+	eb-hadoop::configfile{"slaves":
+		ensure => present ,
+		owner  => 'root' ,
+		group  => 'root' ,
+		mode   => 0777   ,
+		path   => $eb-hadoop::params::HADOOP_CONF_DIR
+	}
+
+   }
 }

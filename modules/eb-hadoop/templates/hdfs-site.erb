@@ -27,6 +27,12 @@ censed under the Apache License, Version 2.0 (the "License");
                 <name>dfs.datanode.data.dir</name>
                 <value><%=scope.lookupvar("eb-hadoop::params::DFS_DATANODE_DATA_DIR")%></value>
         </property>
+	<property>
+	    <name>dfs.replication</name>
+    	    <value>3</value>
+   	</property>
+ 
+
 
 
 </configuration>
