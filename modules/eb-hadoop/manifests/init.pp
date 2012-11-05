@@ -13,7 +13,8 @@ class eb-hadoop
 	
 	eb-hadoop::package{'hadoop':}
 
-	# *-site.xml	
+	# *-site.xml
+	# TODO can use a defination to declare all the resource
 	eb-hadoop::configfile{"core-site.xml":
 		ensure => present ,
 		owner  => 'root' ,
